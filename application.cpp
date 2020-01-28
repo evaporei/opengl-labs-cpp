@@ -1,3 +1,18 @@
+/*
+ * GLEW_STATIC is defined for static library.
+ * GLEW_BUILD  is defined for building the DLL library.
+ */
+
+#ifdef GLEW_STATIC
+#  define GLEWAPI extern
+#else
+#  ifdef GLEW_BUILD
+#    define GLEWAPI extern __declspec(dllexport)
+#  else
+#    define GLEWAPI extern __declspec(dllimport)
+#  endif
+#endif
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -124,8 +139,8 @@ int main(void) {
 	glBindVertexArray(VertexArrayID);
 
 	GLuint programID = LoadShaders(
-       "../resources/shaders/TransformVertexShader.vertexshader",
-       "../resources/shaders/TextureFragmentShader.fragmentshader"
+       "./resources/shaders/TransformVertexShader.vertexshader",
+       "./resources/shaders/TextureFragmentShader.fragmentshader"
     );
 	GLuint MatrixID = glGetUniformLocation(programID, "MVP");
     GLuint TextureID = glGetUniformLocation(programID, "myTextureSampler");
@@ -153,7 +168,7 @@ int main(void) {
 	vector<vec3> sunVertexes;
 	vector<vec2> sunUVs;
 	vector<vec3> sunNormals;
-	loadOBJ("../resources/objects/sun.obj", sunVertexes, sunUVs, sunNormals);
+	loadOBJ("./resources/objects/sun.obj", sunVertexes, sunUVs, sunNormals);
     
     GLuint sunVertexBuffer;
     glGenBuffers(1, &sunVertexBuffer);
@@ -173,7 +188,7 @@ int main(void) {
     vector<vec3> earthVertexes;
     vector<vec2> earthUVs;
     vector<vec3> earthNormals;
-    loadOBJ("../resources/objects/earth_apocalypse.obj", earthVertexes, earthUVs, earthNormals);
+    loadOBJ("./resources/objects/earth_apocalypse.obj", earthVertexes, earthUVs, earthNormals);
     
     GLuint earthVertexBuffer;
     glGenBuffers(1, &earthVertexBuffer);
@@ -193,7 +208,7 @@ int main(void) {
     vector<vec3> moonVertexes;
     vector<vec2> moonUVs;
     vector<vec3> moonNormals;
-    loadOBJ("../resources/objects/moon.obj", moonVertexes, moonUVs, moonNormals);
+    loadOBJ("./resources/objects/moon.obj", moonVertexes, moonUVs, moonNormals);
 
     GLuint moonVertexBuffer;
     glGenBuffers(1, &moonVertexBuffer);
@@ -209,9 +224,9 @@ int main(void) {
     // TEXTURE LOADER
     GLuint *textures = new GLuint[3];
     glGenTextures(3, textures);
-    loadTexture(textures[0], "../resources/textures/2k_sun.jpg");
-    loadTexture(textures[1], "../resources/textures/earth_apocalypse.jpg");
-    loadTexture(textures[2], "../resources/textures/2k_moon.jpg");
+    loadTexture(textures[0], "./resources/textures/2k_sun.jpg");
+    loadTexture(textures[1], "./resources/textures/earth_apocalypse.jpg");
+    loadTexture(textures[2], "./resources/textures/2k_moon.jpg");
     
 
     float counter = 0.0f;

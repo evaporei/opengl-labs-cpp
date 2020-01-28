@@ -32,5 +32,5 @@ Which is where the project code is (`.h`, `.hpp` and `cpp` files).
 
 **Linux | Windows**
 ```
-T.B.D.
+g++ application.cpp objloader.cpp shader.cpp stb_image.cpp -o opengl-labs-cpp -L/usr/X11R6/lib/ -lGL -lGLU -lglut -lGLEW -lglfw -lGL -lX11 -lXi -lXrandr -lXxf86vm -lXinerama -lXcursor -lrt -lm -pthread
 ```
