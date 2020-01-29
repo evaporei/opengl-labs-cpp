@@ -5,8 +5,14 @@
 
 #include <glm/glm.hpp>
 #include "objloader.hpp"
+#include <glm/gtc/type_ptr.hpp>
 
 bool loadOBJ(const char * path, 
+  // const float *pSource = (const float*)glm::value_ptr(sunMVP);
+  // printf("%.6f %.6f %.6f %.6f\n", pSource[0], pSource[1], pSource[2], pSource[3]);
+  // printf("%.6f %.6f %.6f %.6f\n", pSource[4], pSource[5], pSource[6], pSource[7]);
+  // printf("%.6f %.6f %.6f %.6f\n", pSource[8], pSource[9], pSource[10], pSource[11]);
+  // printf("%.6f %.6f %.6f %.6f\n", pSource[12], pSource[13], pSource[14], pSource[15]);
 	std::vector<glm::vec3> & out_vertices, 
 	std::vector<glm::vec2> & out_uvs,
 	std::vector<glm::vec3> & out_normals) {
@@ -61,10 +67,11 @@ bool loadOBJ(const char * path,
 			normalIndices.push_back(normalIndex[1]);
 			normalIndices.push_back(normalIndex[2]);
 		}
-        else{
-			char stupidBuffer[1000];
-			fgets(stupidBuffer, 1000, file);
-		}
+    //     else{
+    //           printf("heyyyyy\n");
+		// 	char stupidBuffer[1000];
+		// 	fgets(stupidBuffer, 1000, file);
+		// }
 	}
 
 	for( unsigned int i=0; i<vertexIndices.size(); i++ ){
